@@ -1,4 +1,4 @@
-# Locker
+# LockerID
 
 > **Note:** This is a customized fork of [Locker](https://github.com/zmeyer44/Locker) by zmeyer44.
 
@@ -18,7 +18,7 @@ Open-source file storage and knowledge platform. A self-hostable alternative to 
 - **Notifications** — In-app notifications for workspace invites and announcements
 - **Workspace Invites** — Invite users via email with token-based onboarding flow
 - **Multi-Store Storage** — Attach multiple storage backends (Local, S3, R2, Vercel Blob) per workspace with automatic replication across stores
-- **Read-Only Ingest** — Scan external buckets or directories for new files and import them into Locker without moving originals
+- **Read-Only Ingest** — Scan external buckets or directories for new files and import them into LockerID without moving originals
 - **Storage Quotas** — Per-user storage limits with usage tracking
 - **Virtual Bash Filesystem** — Traverse workspace files with `ls`, `cd`, `find`, `cat`, `grep`, etc. via `just-bash`
 
@@ -103,7 +103,7 @@ Open [http://localhost:3000](http://localhost:3000), create an account, and star
 
 ## Self-Hosting Guide
 
-Locker auto-detects which platform it's running on and adjusts its capabilities accordingly. Persistent runtimes (Docker, Fly.io, Railway) support all features. Serverless runtimes (Vercel) disable long-running operations like store sync and bulk KB ingestion.
+LockerID auto-detects which platform it's running on and adjusts its capabilities accordingly. Persistent runtimes (Docker, Fly.io, Railway) support all features. Serverless runtimes (Vercel) disable long-running operations like store sync and bulk KB ingestion.
 
 ### Requirements
 
@@ -120,7 +120,7 @@ The included `docker-compose.yml` bundles PostgreSQL, migrations, and the web ap
 
 ```bash
 # 1. Clone and configure
-git clone https://github.com/zmeyer44/Locker.git && cd Locker
+git clone https://github.com/mahdyarief/LockerID.git && cd LockerID
 cp .env.example .env
 
 # 2. Set the required secret
@@ -146,7 +146,7 @@ docker compose --profile search up -d
 Railway provides managed PostgreSQL and persistent disk, so all features work out of the box.
 
 1. Create a new project and add a **PostgreSQL** service. Copy the `DATABASE_URL`.
-2. Add a new service from the Locker repo. Railway will detect the `Dockerfile` automatically.
+2. Add a new service from the LockerID repo. Railway will detect the `Dockerfile` automatically.
 3. Set these environment variables on the web service:
 
    | Variable | Value |
@@ -214,14 +214,14 @@ Fly provides persistent VMs with attached volumes.
 ### Render
 
 1. Create a **PostgreSQL** database in Render. Copy the internal connection string.
-2. Create a new **Web Service** from the Locker repo. Set the Dockerfile path to `./Dockerfile`.
+2. Create a new **Web Service** from the LockerID repo. Set the Dockerfile path to `./Dockerfile`.
 3. Add a **Disk** mounted at `/app/local-blobs` for local file storage.
 4. Set environment variables: `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL`.
 5. Deploy.
 
 ### Vercel
 
-Vercel runs Next.js on serverless functions. Locker auto-detects this and disables features that require a persistent runtime:
+Vercel runs Next.js on serverless functions. LockerID auto-detects this and disables features that require a persistent runtime:
 
 - Store sync and ingest are disabled
 - Bulk KB ingestion is disabled
@@ -246,7 +246,7 @@ You must use a cloud storage provider (Vercel Blob, S3, or R2).
 
 ### Runtime override
 
-Locker detects the hosting platform automatically from environment variables (`VERCEL`, `FLY_REGION`, `RAILWAY_ENVIRONMENT`, etc.). If detection is wrong or you want to test serverless behavior locally, set:
+LockerID detects the hosting platform automatically from environment variables (`VERCEL`, `FLY_REGION`, `RAILWAY_ENVIRONMENT`, etc.). If detection is wrong or you want to test serverless behavior locally, set:
 
 ```bash
 LOCKER_RUNTIME_ENV=vercel  # or: docker, fly, railway, render, development
@@ -270,13 +270,13 @@ Set `BLOB_STORAGE_PROVIDER` in `.env` to configure the default storage backend f
 Workspace admins can attach additional stores from **Settings > Stores**. Each store can be configured as:
 
 - **Writable replica** — files are automatically synced to this store for redundancy
-- **Read-only ingest** — Locker scans the store for new files and imports them without moving the originals
+- **Read-only ingest** — LockerID scans the store for new files and imports them without moving the originals
 
 Stores use their own credentials (BYOB), so different teams can bring different backends. A primary store is designated per workspace for new uploads; replicas receive copies automatically.
 
 ## Plugins
 
-Locker ships with a built-in plugin system. Plugins are installed per-workspace and can add search, transcription, file actions, and more.
+LockerID ships with a built-in plugin system. Plugins are installed per-workspace and can add search, transcription, file actions, and more.
 
 | Plugin                  | Description                                                                 |
 | ----------------------- | --------------------------------------------------------------------------- |
@@ -309,7 +309,7 @@ docker compose --profile search up -d
 
 ## Virtual Filesystem Shell API
 
-Locker includes a read-only virtual filesystem over workspace files/folders, powered by [`just-bash`](https://github.com/vercel-labs/just-bash).
+LockerID includes a read-only virtual filesystem over workspace files/folders, powered by [`just-bash`](https://github.com/vercel-labs/just-bash).
 
 The shell API is available on tRPC router `vfsShell`:
 
