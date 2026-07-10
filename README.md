@@ -1,5 +1,7 @@
 # Locker
 
+> **Note:** This is a customized fork of [Locker](https://github.com/zmeyer44/Locker) by zmeyer44.
+
 Open-source file storage and knowledge platform. A self-hostable alternative to Dropbox and Google Drive — with built-in search, document transcription, and an AI-powered knowledge base.
 
 ## Features
