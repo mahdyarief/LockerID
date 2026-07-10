@@ -177,7 +177,7 @@ export default function TrackedLinkPage({
           <div className="w-full max-w-sm rounded-lg border bg-card p-6">
             <div className="flex items-center gap-2 mb-6">
               <Logo className="size-5 text-primary" />
-              <span className="title text-base">Locker</span>
+              <span className="title text-base">LockerID</span>
             </div>
 
             {needsPassword && (
@@ -282,7 +282,7 @@ export default function TrackedLinkPage({
       <div className="w-full max-w-md rounded-lg border bg-card p-6">
         <div className="flex items-center gap-2 mb-6">
           <Logo className="size-5 text-primary" />
-          <span className="title text-base">Locker</span>
+          <span className="title text-base">LockerID</span>
           <span className="text-xs font-medium px-1.5 py-0.5 bg-primary/5 text-primary rounded-sm ml-auto">
             Shared
           </span>

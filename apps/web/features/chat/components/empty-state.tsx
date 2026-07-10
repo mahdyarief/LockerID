@@ -40,7 +40,7 @@ export function EmptyState({
 
         <div>
           <h2 className="text-lg font-semibold text-foreground">
-            Locker Assistant
+            LockerID Assistant
           </h2>
           <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
             I can help you manage your files, create folders, generate share

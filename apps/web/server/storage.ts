@@ -44,7 +44,7 @@ const providerNameMap = {
 } as const;
 
 function getDefaultStoreName(_provider: StoreRow["provider"]): string {
-  return "Locker Cloud";
+  return "LockerID Cloud";
 }
 
 export async function getPrimaryStore(workspaceId: string): Promise<{

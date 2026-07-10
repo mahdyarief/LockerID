@@ -51,7 +51,7 @@ export default function OnboardingPage() {
         <div className="rounded-lg border bg-card p-6 shadow-sm">
           <div className="mb-6 flex items-center gap-2">
             <Logo className="size-8 text-primary" />
-            <span className="text-lg font-semibold">Locker</span>
+            <span className="text-lg font-semibold">LockerID</span>
           </div>
 
           <h1 className="mb-1 text-xl font-semibold tracking-tight">

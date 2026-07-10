@@ -871,7 +871,7 @@ export default function StoresSettingsPage() {
                 busyStores[store.id] ?? busyStores["_all"];
               const isBusy = !!activity;
 
-              /* ── Premium Locker Cloud card ─────────────────── */
+              /* ── Premium LockerID Cloud card ─────────────────── */
               if (store.credentialSource === "platform") {
                 return (
                   <motion.div

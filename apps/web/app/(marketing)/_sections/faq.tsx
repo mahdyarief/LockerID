@@ -11,19 +11,19 @@ import { MotionDiv } from "../_components/fade-in";
 
 const faqItems = [
   {
-    question: "What is Locker?",
+    question: "What is LockerID?",
     answer:
-      "Locker is an open-source, self-hostable file storage platform. Think of it as your own Dropbox or Google Drive that you control completely\u2014deploy it on your own servers, use your own storage backend, and own your data.",
+      "LockerID is an open-source, self-hostable file storage platform. Think of it as your own Dropbox or Google Drive that you control completely\u2014deploy it on your own servers, use your own storage backend, and own your data.",
   },
   {
     question: "What storage providers are supported?",
     answer:
-      "Locker supports local filesystem, AWS S3, Cloudflare R2, and Vercel Blob out of the box. You can switch between them by changing a single environment variable. No code changes required.",
+      "LockerID supports local filesystem, AWS S3, Cloudflare R2, and Vercel Blob out of the box. You can switch between them by changing a single environment variable. No code changes required.",
   },
   {
-    question: "Is Locker free to use?",
+    question: "Is LockerID free to use?",
     answer:
-      "Yes. Locker is free and open source. You can use it for personal projects, your team, or your entire organization at no cost. You only pay for the infrastructure you choose to host it on.",
+      "Yes. LockerID is free and open source. You can use it for personal projects, your team, or your entire organization at no cost. You only pay for the infrastructure you choose to host it on.",
   },
   {
     question: "How do share links work?",
@@ -41,7 +41,7 @@ const faqItems = [
       "Next.js 16 with App Router, PostgreSQL with Drizzle ORM, tRPC for type-safe APIs, BetterAuth for authentication, and Tailwind CSS for the UI. The project uses a Turborepo monorepo with pnpm workspaces.",
   },
   {
-    question: "How do I deploy Locker?",
+    question: "How do I deploy LockerID?",
     answer:
       "Clone the repo, run pnpm install, start a PostgreSQL database, configure your .env file, run migrations, and start the server. The defaults work out of the box for local development. For production, deploy to any Node.js-compatible platform.",
   },
@@ -120,7 +120,7 @@ export function Faq() {
         >
           <h2 className="mkt-heading text-white">Ready to own your files?</h2>
           <p className="mkt-body max-w-lg text-balance text-white/50">
-            Deploy Locker in minutes and take back control of your file storage.
+            Deploy LockerID in minutes and take back control of your file storage.
             Free forever, open source, no strings attached.
           </p>
           <div className="flex items-center gap-3">

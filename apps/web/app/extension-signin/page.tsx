@@ -43,7 +43,7 @@ export default async function ExtensionSigninPage({ searchParams }: Props) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted">
       <div className="rounded-lg border bg-card p-6 shadow-sm w-full max-w-sm text-center space-y-3">
-        <h1 className="text-lg font-semibold">Connecting Locker extension</h1>
+        <h1 className="text-lg font-semibold">Connecting LockerID extension</h1>
         <p className="text-sm text-muted-foreground">
           Signed in as {session.user.email}. Redirecting back to the extension…
         </p>

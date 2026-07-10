@@ -53,10 +53,10 @@ export function SyncOperationModal({
 
   const description =
     operation === "pull"
-      ? "Import files from this store into Locker."
+      ? "Import files from this store into LockerID."
       : storeName
-        ? "Send Locker files to this store."
-        : "Send Locker files to all connected stores.";
+        ? "Send LockerID files to this store."
+        : "Send LockerID files to all connected stores.";
 
   return (
     <Template

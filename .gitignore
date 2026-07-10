@@ -16,6 +16,7 @@ out/
 # IDE
 .vscode/
 .idea/
+.pi/
 *.swp
 *.swo
 .DS_Store

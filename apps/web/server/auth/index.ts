@@ -4,6 +4,7 @@ import { getDb } from '@locker/database/client';
 import { users, sessions, accounts, verifications } from '@locker/database';
 
 export const auth = betterAuth({
+  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:5000',
   database: drizzleAdapter(getDb(), {
     provider: 'pg',
     schema: { user: users, session: sessions, account: accounts, verification: verifications },

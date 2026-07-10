@@ -45,7 +45,7 @@ export default function LoginPage() {
       <div className="rounded-lg border bg-card p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-6">
           <Logo className="size-8 text-primary" />
-          <span className="text-lg font-semibold">Locker</span>
+          <span className="text-lg font-semibold">LockerID</span>
         </div>
 
         <h1 className="text-xl font-semibold tracking-tight mb-1">Sign in</h1>

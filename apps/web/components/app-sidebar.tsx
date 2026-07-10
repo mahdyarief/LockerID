@@ -289,7 +289,7 @@ export function AppSidebar({
               ) : (
                 <Link href="/" className="flex items-center gap-2">
                   <Logo className="size-6 shrink-0 text-foreground" />
-                  <span className="text-sm font-semibold">Locker</span>
+                  <span className="text-sm font-semibold">LockerID</span>
                 </Link>
               )}
             </div>

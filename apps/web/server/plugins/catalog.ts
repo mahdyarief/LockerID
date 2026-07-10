@@ -7,7 +7,7 @@ const builtinPluginManifestsRaw: PluginManifest[] = [
     description:
       "Full-text and semantic document search powered by QMD. Automatically indexes uploaded documents for intelligent discovery.",
     version: "0.2.0",
-    developer: "Locker",
+    developer: "LockerID",
     homepageUrl: "https://github.com/tobi/qmd",
     source: "official",
     permissions: ["files.read", "search.read", "search.enhance"],
@@ -47,7 +47,7 @@ const builtinPluginManifestsRaw: PluginManifest[] = [
     description:
       "Lightweight full-text file content search using SQLite FTS5. Runs entirely in-process with minimal memory — no external service or ML model required.",
     version: "0.1.0",
-    developer: "Locker",
+    developer: "LockerID",
     source: "official",
     permissions: ["files.read", "search.read", "search.enhance"],
     capabilities: ["workspace_search", "file_actions"],
@@ -84,9 +84,9 @@ const builtinPluginManifestsRaw: PluginManifest[] = [
     slug: "google-drive-sync",
     name: "Google Drive Sync",
     description:
-      "Transfer files between Locker and Google Drive directly from file and folder workflows.",
+      "Transfer files between LockerID and Google Drive directly from file and folder workflows.",
     version: "0.1.0",
-    developer: "Locker",
+    developer: "LockerID",
     homepageUrl: "https://developers.google.com/drive",
     source: "official",
     permissions: [
@@ -151,7 +151,7 @@ const builtinPluginManifestsRaw: PluginManifest[] = [
     description:
       "Generates searchable markdown descriptions of images and PDFs using AI. Uses the built-in Vercel AI Gateway by default, or can be pointed at any external AI/OCR service. The generated text is automatically indexed so non-text files become discoverable through search.",
     version: "0.1.0",
-    developer: "Locker",
+    developer: "LockerID",
     source: "official",
     permissions: ["files.read", "files.write", "external.network"],
     capabilities: ["document_transcription", "file_actions"],
@@ -209,7 +209,7 @@ const builtinPluginManifestsRaw: PluginManifest[] = [
     description:
       "Build a persistent, interlinked wiki of knowledge from your tagged documents using AI. Chat with your knowledge base, ingest new sources, and lint for quality issues.",
     version: "0.1.0",
-    developer: "Locker",
+    developer: "LockerID",
     source: "official",
     permissions: ["files.read", "files.write", "external.network"],
     capabilities: ["conversational_panel", "file_actions"],

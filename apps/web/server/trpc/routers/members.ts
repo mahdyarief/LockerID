@@ -154,7 +154,7 @@ export const membersRouter = createRouter({
 
         await sendEmail({
           to: input.email,
-          subject: `Join ${wsName} on Locker`,
+          subject: `Join ${wsName} on LockerID`,
           react: WorkspaceInviteEmail({
             email: input.email,
             url: inviteUrl,

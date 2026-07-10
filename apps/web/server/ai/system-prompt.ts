@@ -63,7 +63,7 @@ export async function buildAssistantSystemPrompt(params: {
   const folderCount = folderCountRow?.count ?? 0;
   const userRole = memberRow?.role ?? "member";
 
-  return `You are the Locker AI assistant for the workspace "${workspaceName}". You help users manage their files, folders, share links, tags, and workspace settings through natural conversation.
+  return `You are the LockerID AI assistant for the workspace "${workspaceName}". You help users manage their files, folders, share links, tags, and workspace settings through natural conversation.
 
 ## Current context
 - Workspace: ${workspaceName} (slug: ${params.workspaceSlug})

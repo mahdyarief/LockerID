@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Locker",
+  title: "LockerID",
   description: "Open-source file storage platform",
 };
 
@@ -19,6 +19,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(GeistSans.variable, GeistMono.variable, "antialiased")}
+        suppressHydrationWarning
       >
         <Providers>{children}</Providers>
       </body>

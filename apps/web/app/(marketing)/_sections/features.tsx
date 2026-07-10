@@ -25,7 +25,7 @@ const features = [
     title: "Search Inside Images & PDFs",
     icon: SearchIcon,
     description:
-      "Find files by what's in them, not just the name. Locker transcribes images and PDFs into searchable text so every document is discoverable.",
+      "Find files by what's in them, not just the name. LockerID transcribes images and PDFs into searchable text so every document is discoverable.",
   },
   {
     title: "Virtual Bash Shell",
@@ -69,7 +69,7 @@ export function Features() {
             Everything you need to manage files
           </h2>
           <p className="mkt-body mt-4 max-w-2xl text-balance text-muted-foreground">
-            Locker gives you the full toolkit for file management, sharing, and
+            LockerID gives you the full toolkit for file management, sharing, and
             collaboration&mdash;all self-hosted on your own terms.
           </p>
         </MotionDiv>

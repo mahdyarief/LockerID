@@ -12,7 +12,7 @@ import { GITHUB_URL } from "@/constants/app";
 function useGitHubStars() {
   const [stars, setStars] = useState<number | null>(null);
   useEffect(() => {
-    fetch("https://api.github.com/repos/zmeyer44/Locker")
+    fetch("https://api.github.com/repos/mahdyarief/LockerID")
       .then((res) => res.json())
       .then((data) => {
         if (typeof data.stargazers_count === "number") {
@@ -91,7 +91,7 @@ export function Navbar() {
                         : "text-primary-foreground",
                     )}
                   >
-                    Locker
+                    LockerID
                   </span>
                 </Link>
 

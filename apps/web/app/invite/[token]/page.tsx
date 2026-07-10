@@ -27,7 +27,7 @@ export default function InvitePage({
         <div className="w-full max-w-sm rounded-lg border bg-card p-6">
           <div className="mb-6 flex items-center gap-2">
             <Logo className="size-8 text-primary" />
-            <span className="text-lg font-semibold">Locker</span>
+            <span className="text-lg font-semibold">LockerID</span>
           </div>
 
           <div className="mb-4 flex items-center gap-3">
@@ -140,7 +140,7 @@ function InviteDetails({ token }: { token: string }) {
       <div className="w-full max-w-sm rounded-lg border bg-card p-6">
         <div className="mb-6 flex items-center gap-2">
           <Logo className="size-8 text-primary" />
-          <span className="text-lg font-semibold">Locker</span>
+          <span className="text-lg font-semibold">LockerID</span>
         </div>
 
         <div className="mb-4 flex items-center gap-3">
@@ -159,7 +159,7 @@ function InviteDetails({ token }: { token: string }) {
 
         <p className="mb-6 text-sm text-muted-foreground">
           You&apos;ve been invited to join{" "}
-          <strong>{invite.workspaceName}</strong> on Locker. Accept the
+          <strong>{invite.workspaceName}</strong> on LockerID. Accept the
           invitation to start collaborating.
         </p>
 

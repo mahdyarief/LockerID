@@ -47,7 +47,7 @@ const attachmentSchema = z.object({
   // base64-encoded bytes from the extension's File → arrayBuffer → btoa path.
   // String-length cap is a cheap guard so we reject before allocating a
   // Buffer; the decoded-byte cap below is what actually enforces parity with
-  // the Locker-file attachment limit.
+  // the LockerID-file attachment limit.
   dataBase64: z.string().min(1).max(MAX_BASE64_CHARS),
 });
 
@@ -56,7 +56,7 @@ const bodySchema = z.object({
   prompt: z.string().min(1).max(8000),
   // Files the user uploaded from their computer in the chat composer.
   attachments: z.array(attachmentSchema).max(8).optional(),
-  // Files the user picked from their Locker workspace. Looked up server-side
+  // Files the user picked from their LockerID workspace. Looked up server-side
   // and read straight from storage so we don't round-trip the bytes through
   // the extension.
   lockerFileIds: z.array(z.uuid()).max(8).optional(),
@@ -73,7 +73,7 @@ class AttachmentTooLargeError extends Error {
   }
 }
 
-async function loadLockerFile(
+async function loadLockerIDFile(
   fileId: string,
   workspaceId: string,
 ): Promise<{ name: string; mimeType: string; bytes: Buffer } | null> {
@@ -241,9 +241,9 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Materialize attachments — both client uploads and Locker references —
+  // Materialize attachments — both client uploads and LockerID references —
   // into in-memory buffers we can hand to the model. Enforce parity with
-  // the Locker-attachment streaming cap on client uploads, and a cumulative
+  // the LockerID-attachment streaming cap on client uploads, and a cumulative
   // cap so a single request can't push 8 × 25 MB of buffered memory.
   const materialized: AttachmentInput[] = [];
   let totalAttachmentBytes = 0;
@@ -266,10 +266,10 @@ export async function POST(req: NextRequest) {
       materialized.push({ name: a.name, mimeType: a.mimeType, bytes });
     }
     for (const id of lockerFileIds) {
-      const loaded = await loadLockerFile(id, membership.workspaceId);
+      const loaded = await loadLockerIDFile(id, membership.workspaceId);
       if (!loaded) {
         return NextResponse.json(
-          { error: `Locker file ${id} not found` },
+          { error: `LockerID file ${id} not found` },
           { status: 404 },
         );
       }
