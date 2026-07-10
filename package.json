@@ -1,0 +1,28 @@
+{
+  "name": "locker",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev --filter=@locker/web",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "db:generate": "turbo db:generate --filter=@locker/database",
+    "db:migrate": "turbo db:migrate --filter=@locker/database",
+    "db:seed": "turbo db:seed --filter=@locker/database",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.0",
+    "prettier": "^3.8.1",
+    "turbo": "^2.10.4",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20"
+  }
+}
