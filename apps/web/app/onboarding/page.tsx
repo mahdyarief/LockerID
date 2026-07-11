@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Users, ArrowRight, Plus } from "lucide-react";
 import { Logo } from "@/assets/logo";
@@ -13,7 +13,15 @@ export default function OnboardingPage() {
   const router = useRouter();
   const [name, setName] = useState("");
 
+  const { data: me } = trpc.users.me.useQuery();
   const { data: pendingInvites } = trpc.members.myPendingInvites.useQuery();
+
+  // Redirect superadmins to admin dashboard
+  useEffect(() => {
+    if (me?.role === "superadmin") {
+      router.replace("/admin");
+    }
+  }, [me, router]);
 
   const createWorkspace = trpc.workspaces.create.useMutation({
     onSuccess: (workspace) => {

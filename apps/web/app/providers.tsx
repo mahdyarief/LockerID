@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink, httpLink } from "@trpc/client";
+import { httpBatchLink, httpBatchStreamLink, httpLink } from "@trpc/client";
 import superjson from "superjson";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -47,7 +47,7 @@ export function Providers({ children }: { children: ReactNode }) {
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
-        httpLink({
+        httpBatchStreamLink({
           url: `${getBaseUrl()}/api/trpc`,
           transformer: superjson,
           headers() {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Loader2, Shield } from "lucide-react";
+import { Loader2, Shield, Eye, EyeOff } from "lucide-react";
 import { Logo } from "@/assets/logo";
 import { signUp } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
@@ -22,8 +22,10 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const utils = trpc.useUtils();
   const { data: isFirstUserData } = trpc.users.isFirstUser.useQuery();
   const isFirstUser = isFirstUserData?.isFirst ?? false;
 
@@ -31,14 +33,20 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
 
+    // Capture isFirstUser before registration to avoid race condition
+    const wasFirstUser = isFirstUser;
+
     try {
       const result = await signUp.email({ name, email, password });
       if (result.error) {
         toast.error(result.error.message ?? "Registration failed");
       } else {
-        // First user becomes superadmin, redirect to admin panel
-        // Subsequent users redirect to onboarding/workspace
-        router.push(redirectTo ?? (isFirstUser ? "/admin" : "/onboarding"));
+        // Redirect based on whether this WAS the first user (before registration)
+        if (wasFirstUser) {
+          router.push(redirectTo ?? "/admin");
+        } else {
+          router.push(redirectTo ?? "/onboarding");
+        }
       }
     } catch {
       toast.error("Something went wrong");
@@ -102,14 +110,25 @@ export default function RegisterPage() {
 
           <div className="space-y-2">
             <label className="text-sm font-medium">Password</label>
-            <Input
-              type="password"
-              placeholder="Choose a password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={8}
-            />
+            <div className="relative">
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Choose a password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={8}
+                className="pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
 
           <Button type="submit" className="w-full" disabled={loading}>
