@@ -1,6 +1,6 @@
 {
   "$schema": "https://v2-10-4.turborepo.dev/schema.json",
-  "globalDependencies": [".env", "**/.env.*local"],
+  "globalDependencies": [".env.local", "**/.env.*local"],
   "globalPassThroughEnv": [
     "DATABASE_URL",
     "BETTER_AUTH_SECRET",

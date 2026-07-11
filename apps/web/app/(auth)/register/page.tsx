@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import { Loader2, Shield } from "lucide-react";
 import { Logo } from "@/assets/logo";
 import { signUp } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc/client";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -23,6 +24,9 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { data: isFirstUserData } = trpc.users.isFirstUser.useQuery();
+  const isFirstUser = isFirstUserData?.isFirst ?? false;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -32,7 +36,9 @@ export default function RegisterPage() {
       if (result.error) {
         toast.error(result.error.message ?? "Registration failed");
       } else {
-        router.push(redirectTo ?? "/onboarding");
+        // First user becomes superadmin, redirect to admin panel
+        // Subsequent users redirect to onboarding/workspace
+        router.push(redirectTo ?? (isFirstUser ? "/admin" : "/onboarding"));
       }
     } catch {
       toast.error("Something went wrong");
@@ -55,6 +61,22 @@ export default function RegisterPage() {
         <p className="text-sm text-muted-foreground mb-6">
           Start storing your files securely
         </p>
+
+        {isFirstUser && (
+          <div className="mb-6 rounded-lg border border-primary/30 bg-primary/5 p-4">
+            <div className="flex items-start gap-3">
+              <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-primary">First User - Superadmin Role</p>
+                <p className="text-xs text-muted-foreground">
+                  As the first user, you will be assigned the <span className="font-semibold text-foreground">Superadmin</span> role.
+                  Superadmins have system-level access to manage all workspaces and users,
+                  but cannot create their own workspace.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">

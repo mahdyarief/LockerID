@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { eq, and } from "drizzle-orm";
+import { eq, and, count, sql } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
-import { createRouter, protectedProcedure } from "../init";
+import { createRouter, protectedProcedure, publicProcedure } from "../init";
 import {
   users,
   sessions,
@@ -11,6 +11,28 @@ import {
 import { auth } from "../../auth";
 
 export const usersRouter = createRouter({
+  /** Check if this is the first user (for superadmin assignment) */
+  isFirstUser: publicProcedure.query(async ({ ctx }) => {
+    try {
+      const result = await ctx.db
+        .select({ id: users.id })
+        .from(users)
+        .limit(1);
+      return { isFirst: result.length === 0 };
+    } catch (error: any) {
+      console.error('[isFirstUser] Query failed:', {
+        message: error?.message,
+        cause: error?.cause,
+        stack: error?.stack,
+        fullError: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+      });
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: `Database query failed: ${error?.cause?.message || error?.message || 'Unknown error'}`,
+      });
+    }
+  }),
+
   /** Get the current user's profile */
   me: protectedProcedure.query(async ({ ctx }) => {
     const [user] = await ctx.db
@@ -19,6 +41,7 @@ export const usersRouter = createRouter({
         name: users.name,
         email: users.email,
         image: users.image,
+        role: users.role,
         createdAt: users.createdAt,
       })
       .from(users)

@@ -1,6 +1,8 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import superjson from 'superjson';
 import type { Context } from './context';
+import { users } from '@locker/database';
+import { eq } from 'drizzle-orm';
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -50,5 +52,32 @@ export const workspaceAdminProcedure = workspaceProcedure.use(
       });
     }
     return next({ ctx });
+  },
+);
+
+export const superAdminProcedure = protectedProcedure.use(
+  async ({ ctx, next }) => {
+    // Check if user has superadmin role
+    const [user] = await ctx.db
+      .select({ role: users.role })
+      .from(users)
+      .where(eq(users.id, ctx.userId!))
+      .limit(1);
+
+    if (!user || user.role !== 'superadmin') {
+      throw new TRPCError({
+        code: 'FORBIDDEN',
+        message: 'Superadmin access required',
+      });
+    }
+
+    return next({
+      ctx: {
+        ...ctx,
+        userId: ctx.userId,
+        session: ctx.session,
+        userRole: user.role,
+      },
+    });
   },
 );

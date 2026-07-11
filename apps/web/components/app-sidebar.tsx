@@ -26,6 +26,7 @@ import {
   Bell,
   HardDrive,
   Palette,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
 import { Logo } from "@/assets/logo";
@@ -318,6 +319,9 @@ export function AppSidebar({
 
       {/* Bottom section */}
       <div className="flex flex-col gap-1">
+        {/* Admin link for superadmin */}
+        <AdminLink collapsed={collapsed} />
+
         {/* Storage usage card — only in workspace context */}
         {isWorkspace && !collapsed && (
           <div className="rounded-lg ring-1 ring-border shadow-sm p-2.5 mb-1">
@@ -329,6 +333,26 @@ export function AppSidebar({
         <UserMenu user={user} collapsed={collapsed} />
       </div>
     </div>
+  );
+}
+
+// ── Admin link (visible only to superadmin) ────────────────────────────────
+
+function AdminLink({ collapsed }: { collapsed: boolean }) {
+  const { data: me } = trpc.users.me.useQuery();
+
+  if (!me || me.role !== 'superadmin') {
+    return null;
+  }
+
+  return (
+    <NavItem
+      href="/admin"
+      icon={Shield}
+      label="Admin Panel"
+      isActive={false}
+      collapsed={collapsed}
+    />
   );
 }
 

@@ -11,6 +11,7 @@ import {
   workspaces,
   workspaceMembers,
   workspacePlugins,
+  users,
 } from "@locker/database";
 import {
   createWorkspaceSchema,
@@ -70,6 +71,20 @@ export const workspacesRouter = createRouter({
   create: protectedProcedure
     .input(createWorkspaceSchema)
     .mutation(async ({ ctx, input }) => {
+      // Check if user is superadmin - superadmins cannot create workspaces
+      const [currentUser] = await ctx.db
+        .select({ role: users.role })
+        .from(users)
+        .where(eq(users.id, ctx.userId))
+        .limit(1);
+
+      if (currentUser?.role === 'superadmin') {
+        throw new TRPCError({
+          code: 'FORBIDDEN',
+          message: 'Superadmins cannot create workspaces',
+        });
+      }
+
       const baseSlug = generateSlug(input.name);
       let slug = baseSlug;
       let collision: { id: string } | undefined;

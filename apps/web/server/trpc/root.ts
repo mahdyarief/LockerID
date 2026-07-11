@@ -20,6 +20,7 @@ import { usersRouter } from "./routers/users";
 import { notificationsRouter } from "./routers/notifications";
 import { assistantRouter } from "./routers/assistant";
 import { runtimeRouter } from "./routers/runtime";
+import { superAdminRouter } from "./routers/superadmin";
 
 export const appRouter = createRouter({
   files: filesRouter,
@@ -43,6 +44,7 @@ export const appRouter = createRouter({
   notifications: notificationsRouter,
   assistant: assistantRouter,
   runtime: runtimeRouter,
+  superAdmin: superAdminRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -31,3 +31,7 @@ export interface BreadcrumbItem {
 export const WORKSPACE_ROLES = ['owner', 'admin', 'member'] as const;
 export type WorkspaceRole = (typeof WORKSPACE_ROLES)[number];
 export type InviteStatus = 'pending' | 'accepted' | 'expired';
+
+// User roles (system-level)
+export const USER_ROLES = ['superadmin', 'user'] as const;
+export type UserRole = (typeof USER_ROLES)[number];

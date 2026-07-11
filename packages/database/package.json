@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@locker/common": "workspace:*",
+    "@locker/env": "workspace:*",
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.1",
     "pg": "^8.20.0"

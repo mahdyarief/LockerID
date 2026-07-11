@@ -36,7 +36,7 @@ import { LocalStorageAdapter } from "@locker/storage";
 
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const envPath = path.resolve(__dirname, "..", "..", "..", ".env");
+const envPath = path.resolve(__dirname, "..", "..", "..", ".env.local");
 if (fs.existsSync(envPath)) {
   for (const line of fs.readFileSync(envPath, "utf8").split("\n")) {
     const trimmed = line.trim();

@@ -1,8 +1,5 @@
-import dotenv from 'dotenv';
-import { resolve } from 'path';
+import '@locker/env';
 import { defineConfig } from 'drizzle-kit';
-
-dotenv.config({ path: resolve(__dirname, '../../.env') });
 
 export default defineConfig({
   schema: './src/schema/index.ts',

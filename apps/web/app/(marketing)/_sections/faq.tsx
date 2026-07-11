@@ -43,7 +43,7 @@ const faqItems = [
   {
     question: "How do I deploy LockerID?",
     answer:
-      "Clone the repo, run pnpm install, start a PostgreSQL database, configure your .env file, run migrations, and start the server. The defaults work out of the box for local development. For production, deploy to any Node.js-compatible platform.",
+      "Clone the repo, run pnpm install, start a PostgreSQL database, configure your .env.local file, run migrations, and start the server. The defaults work out of the box for local development. For production, deploy to any Node.js-compatible platform.",
   },
 ];
 

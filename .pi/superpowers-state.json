@@ -29,12 +29,35 @@
   "tdd": {
     "phase": "idle",
     "testFiles": [],
-    "sourceFiles": [],
+    "sourceFiles": [
+      "D:\\Github\\LockerID\\packages\\database\\src\\schema\\users.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\auth\\index.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\trpc\\init.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\trpc\\routers\\superadmin.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\trpc\\root.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\trpc\\routers\\workspaces.ts",
+      "D:\\Github\\LockerID\\packages\\common\\src\\types.ts",
+      "D:\\Github\\LockerID\\apps\\web\\server\\trpc\\routers\\users.ts",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(admin)\\admin\\layout.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(admin)\\admin\\page.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(admin)\\admin\\workspaces\\page.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(admin)\\admin\\users\\page.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(dashboard)\\home\\page.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\components\\app-sidebar.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\components\\ui\\label.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(auth)\\register\\page.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\scripts\\test-sync-flow.ts",
+      "D:\\Github\\LockerID\\packages\\database\\src\\seed\\run.ts",
+      "D:\\Github\\LockerID\\apps\\web\\app\\(marketing)\\_sections\\faq.tsx",
+      "D:\\Github\\LockerID\\apps\\web\\app\\providers.tsx",
+      "D:\\Github\\LockerID\\packages\\database\\src\\client.ts",
+      "D:\\Github\\LockerID\\packages\\env\\src\\index.ts"
+    ],
     "redVerificationPending": false
   },
   "debug": {
     "active": false,
-    "investigated": false,
+    "investigated": true,
     "fixAttempts": 0
   },
   "verification": {

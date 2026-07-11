@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@/server/auth';
 import { headers } from 'next/headers';
 import { getDb } from '@locker/database/client';
-import { workspaceMembers, workspaces } from '@locker/database';
+import { users, workspaceMembers, workspaces } from '@locker/database';
 import { eq } from 'drizzle-orm';
 
 export default async function DashboardRootPage() {
@@ -13,6 +13,18 @@ export default async function DashboardRootPage() {
   }
 
   const db = getDb();
+  
+  // Check if user is superadmin
+  const [user] = await db
+    .select({ role: users.role })
+    .from(users)
+    .where(eq(users.id, session.user.id))
+    .limit(1);
+
+  if (user?.role === 'superadmin') {
+    redirect('/admin');
+  }
+
   const [membership] = await db
     .select({ slug: workspaces.slug })
     .from(workspaceMembers)

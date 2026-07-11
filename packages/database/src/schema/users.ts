@@ -16,6 +16,7 @@ export const users = pgTable('users', {
   name: varchar('name', { length: 255 }),
   emailVerified: boolean('email_verified').default(false),
   image: text('image'),
+  role: varchar('role', { length: 20 }).default('user').notNull(),
   storageUsed: bigint('storage_used', { mode: 'number' }).default(0).notNull(),
   storageLimit: bigint('storage_limit', { mode: 'number' })
     .default(5368709120) // 5GB
